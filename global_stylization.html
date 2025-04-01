@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- bulma css template -->
+<link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet"/>
+<!-- ionicons -->
+<script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- model viewer -->
+<script src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js" type="module"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"/>
+<link href="./static/css/bulma.min.css" rel="stylesheet"/>
+<link href="./static/css/bulma-carousel.min.css" rel="stylesheet"/>
+<link href="./static/css/bulma-slider.min.css" rel="stylesheet"/>
+<link href="./static/css/fontawesome.all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet"/>
+<link href="./static/css/index.css" rel="stylesheet"/>
+<!-- <link rel="icon" href="./static/images/adobe.svg"> -->
+<link href="./static/images/shooting-star.svg" rel="icon"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer="" src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/bulma-slider.min.js"></script>
+<script src="./static/js/index.js"></script>
+<title>
+    SENORITA
+  </title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&display=swap');
+        .dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        .pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        .great-vibes {
+            font-family: 'Great Vibes', cursive;
+        }
+        .modern-love-grunge {
+            font-family: 'Modern Love Grunge', cursive;
+        }
+        .mystical-woods-rough-script {
+            font-family: 'Mystical Woods Rough Script', cursive;
+        }
+        .script-mt-bold {
+            font-family: 'Script MT Bold', cursive;
+        }
+        .vivaldi {
+            font-family: 'Vivaldi', cursive;
+        }
+        .segoe-print {
+            font-family: 'Segoe Print', cursive;
+            font-size: 46px;
+            background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .default-font {
+            font-family: Arial, sans-serif;
+            font-size: 46px;
+        }
+  /* 样式用来布局表格和标签 */
+  .table-container {
+    display: flex; /* 使用 Flexbox 布局 */
+    align-items: center; /* 垂直居中对齐 */
+  }
+  .label-column {
+    width: 70px; /* 标签列的固定宽度 */
+    padding: 10px; /* 内边距 */
+    text-align: left; /* 文字右对齐 */
+    font-weight: bold; /* 加粗 */
+  }
+  .content-column {
+    flex: 1; /* 剩余空间全部给内容列 */
+  }
+  table {
+    border-collapse: collapse; /* 合并边框 */
+    width: 100%; /* 表格宽度100% */
+  }
+  th, td {
+    border: 0px solid #ccc; /* 边框样式 */
+    padding: 4px; /* 内边距 */
+    text-align: left; /* 文字左对齐 */
+  }
+  .gradient-text {
+  background-image: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
+  -webkit-background-clip: text; /* 将渐变应用到文字 */
+  color: transparent; /* 使文字本身透明 */
+}
+</style>
+<link href="icon.ico" rel="icon"/>
+</head>
+<body>
+<section class="hero is-small">
+<div class="hero-body">
+<div class="container" style="width: 60%; margin: 0 auto; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif; text-align: left;">
+
+    <h3 class="title is-3 has-text-centered" style="font-size: 1.5em;">The Construction of the Global Stylization</h3>
+
+
+<p style="text-align: left; font-size: 0.875em; margin-bottom: 1em;">
+We find that two powerful video generation models, i.e., CogVideoX and HunyuanVideo, lack sufficient ability to generate videos that accurately follow style information. This limitation prevents us from applying techniques such as ControlNet to repaint a video effectively.
+To address this, we shift our focus to image-based ControlNet to leverage the strong stylization capabilities of these models, enhancing the stylization of video generation. Specifically, we first apply an image ControlNet to process the first frame, then use a video ControlNet to propagate the style across the remaining frames. Since video generation models inherently maintain temporal consistency between frames, the style applied to the first frame can be effectively transferred to the rest of the video.</p>
+
+
+<div style="text-align: center;">
+        <img class="center-img" src="./imgs/global_stylization.PNG" width="80%">
+</div>
+
+<p style="text-align: left; font-size: 0.875em; margin-bottom: 1em;">
+We utilize the architecture of ControlNet for DiT and integrate it with CogVideoX-5B-I2V to process subsequent frames, maintaining the video's structure consistently propagate the style from the first frame. Specifically, we inject first frame features from the control branch (ControlNet) into the main branch (base model) through zero convolution.
+The control branch consists of N layers, while the main branch has M layers, with M being a multiple of N. We ensure that once the first N layers of the main branch have been added with hidden states, the K-th layer of the main branch receives the K%N-th hidden state from the control branch. This process is repeated until all DiT blocks in the main branch have received the control hidden states.</p>
+
+<p style="text-align: left; font-size: 0.875em; margin-bottom: 1em;">
+For the input to the DiT block in the transformer, we use two types of patch embedders. In the main branch, the patch embedder processes the input video condition. The control branch uses two patch embedders: the main patch embedder and the control patch embedder, to receive and process the control condition. The output embeddings of both embedders are combined and fed into the model. As shown in Figure, we pad the first frame along the frame dimension and concatenate it with the original latent representation along the channel dimension (32 channels) as input to the main branch. In the control branch, we concatenate the HED, Canny, and depth latents representations along the channel dimension (48 channels).</p>
+
+
+<p style="text-align: left; font-size: 0.875em; margin-bottom: 1em;">
+For training, the parameters of the main branch are initialized using CogVideoX-5B-I2V, and the control branch is copied from the main branch, except for the control patch embedder, which is zero-initialized. We select the first 6 DiT blocks from the main branch to serve as the control branch. We trained our global stylizer on our expert dataset for 1 epoch with a batch size of 8, learning rate of 1e-5, and weight decay of 1e-4. We freeze some training layers to reduce the training cost and keep generalization. Specifically, the norm and FFN layers in the backbone were frozen, while the first DiT block in the control branch was trained. Only the first DiT block, patch embedder, and attention layer in the control branch were trained. We train our global stylizer in two phases. In Phase 1, we train the global stylizer on videos with a resolution of 256 x 448 x 33. Additionally, we incorporate a 10% null prompt during training to enable classifier-free guidance. In Phase 2, we finetuned the model from Phase 1, increasing the spatial resolution to 448 x 896.</p>
+
+<p style="text-align: left; font-size: 0.875em; margin-bottom: 1em;">
+During inference, we append the required style prompt to the end of the video description, creating a new combined prompt. The first frame is generated by ControlNet-SD1.5, which is then fed into the model along with the prompt and control condition. We use the classifier-free guidance of 4. The model processes a video within 2 minutes on an Nvidia RTX 4090, at a resolution of 336 x 592, producing 33 frames.</p>
+
+</div>
+</div>
+</section>
+
+<section class="hero is-small">
+<div class="hero-body">
+<div class="container" style="width: 60%; margin: 0 auto; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;">
+
+<h3 class="title is-3 has-text-centered">
+<span style="color: black;">More Videos</span>
+</h3>
+
+<div class="carousel results-carousel" id="results-carousel" style="display: flex; flex-wrap: wrap; gap: 10px;">
+
+
+
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\914c629cfc4614ce2aa424acc4f394b8_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\914c629cfc4614ce2aa424acc4f394b8.mp4" type="video/mp4"/>
+</video>
+</div>
+
+
+
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\3f9761d0526a8f01e5287e788b4d8841_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\3f9761d0526a8f01e5287e788b4d8841.mp4" type="video/mp4"/>
+</video>
+</div>
+
+
+
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\ab3d6b4466e8feb631ad4cf702651c51_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\ab3d6b4466e8feb631ad4cf702651c51.mp4" type="video/mp4"/>
+</video>
+</div>
+
+
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\bbe68a61746fa90dd5398e44dfe34a95_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\bbe68a61746fa90dd5398e44dfe34a95.mp4" type="video/mp4"/>
+</video>
+</div>
+
+</div>
+<p style="text-align: left;"><a href="index.html">Click and Back</a></p>
+</div> <!-- 结束container -->
+</div> <!-- 结束hero-body -->
+</section>
+</body>
+</html>

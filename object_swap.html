@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<!-- bulma css template -->
+<link href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" rel="stylesheet"/>
+<!-- ionicons -->
+<script src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" type="module"></script>
+<script nomodule="" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+<!-- model viewer -->
+<script src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.1.1/model-viewer.min.js" type="module"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet"/>
+<link href="./static/css/bulma.min.css" rel="stylesheet"/>
+<link href="./static/css/bulma-carousel.min.css" rel="stylesheet"/>
+<link href="./static/css/bulma-slider.min.css" rel="stylesheet"/>
+<link href="./static/css/fontawesome.all.min.css" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet"/>
+<link href="./static/css/index.css" rel="stylesheet"/>
+<!-- <link rel="icon" href="./static/images/adobe.svg"> -->
+<link href="./static/images/shooting-star.svg" rel="icon"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer="" src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/bulma-slider.min.js"></script>
+<script src="./static/js/index.js"></script>
+<title>
+    SENORITA
+  </title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&family=Great+Vibes&display=swap');
+        .dancing-script {
+            font-family: 'Dancing Script', cursive;
+        }
+        .pacifico {
+            font-family: 'Pacifico', cursive;
+        }
+        .great-vibes {
+            font-family: 'Great Vibes', cursive;
+        }
+        .modern-love-grunge {
+            font-family: 'Modern Love Grunge', cursive;
+        }
+        .mystical-woods-rough-script {
+            font-family: 'Mystical Woods Rough Script', cursive;
+        }
+        .script-mt-bold {
+            font-family: 'Script MT Bold', cursive;
+        }
+        .vivaldi {
+            font-family: 'Vivaldi', cursive;
+        }
+        .segoe-print {
+            font-family: 'Segoe Print', cursive;
+            font-size: 46px;
+            background: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .default-font {
+            font-family: Arial, sans-serif;
+            font-size: 46px;
+        }
+  .table-container {
+    display: flex;
+    align-items: center;
+  }
+  .label-column {
+    width: 70px;
+    padding: 10px;
+    text-align: left;
+    font-weight: bold;
+  }
+  .content-column {
+    flex: 1;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 0px solid #ccc;
+    padding: 4px;
+    text-align: left;
+  }
+  .gradient-text {
+  background-image: linear-gradient(to right, rgb(0, 159, 255), rgb(236, 47, 75));
+  -webkit-background-clip: text;
+  color: transparent;
+}
+</style>
+<link href="icon.ico" rel="icon"/>
+</head>
+<body>
+<section class="hero is-small">
+<div class="hero-body">
+<div class="container">
+    <div style="width: 60%; margin: 0 auto; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;">
+<h3 class="title is-3 has-text-centered">
+<span style="color: black;">The Construction of Object Swap</span>
+</h3>
+
+<p style="text-align: left; font-size: 0.875em; margin-top: 1em; margin-bottom: 1em;">Although many studies have explored text-guided video inpainting, such as AVID and COCOCO, most of these methods rely on outdated video foundation models, such as AnimateDiff. Consequently, the generated videos often exhibit noticeable artifacts and inconsistencies. Recently, Hu et al. proposed the VIVID model, which trains an inpainter based on CogVideoX-5B-I2V. Unfortunately, their inpainter has not been open-sourced. Similar with the methods proposed by Hu et al., we use the first-frame edited by a stable and well-performed image editor Flux-Fill to guide the inpainting process. </p>
+
+    <div>
+        <img class="center-img" src="./imgs/object_swap.PNG" width="80%">
+    </div>
+
+<p style="text-align: left; font-size: 0.875em; margin-top: 1em; margin-bottom: 1em;">The difference between VIVID and our inpainter lies in the following aspects. 
+For training mask selection, we employ masks with random positions and shapes. We observed that the model tends to overfit to specific mask shapes during inpainting. To mitigate this, we generate masks with either random shapes or rectangles with varying aspect ratios in the first frame and periodically shift their locations in the subsequent frames. For both types of masks, we use video captions as prompts. Additionally, we introduce object-covering masks to enhance the model’s learning capacity. These masks are categorized into two types: (1) precise masks detected by Grounded-SAM2 and (2) rectangular masks expanded from these precise masks. These masks are paired with structured prompts, which consist of pronouns and detected phrases, for training. Further details are provided in Figure. Another key difference is in patch embedder initialization. Specifically, we initialize the first 16 channels of the patch embedder using parameters from the original patch embedders, while the remaining channels are zero-initialized. </p>
+
+<p style="text-align: left; font-size: 0.875em; margin-top: 1em; margin-bottom: 1em;">For training, we set the first frame of the mask sequence to zeros to utilize the guidance of the edited image. The inpainter is initialized with the parameters of CogVideoX-5B-I2V. Unlike global stylizer methods, our inpainter does not require a control branch, allowing for a larger batch size. We trained for 1 epoch on our expert dataset with AdamW optimizer, batch size of 16 and a learning rate of 1e-5. The resolution used during training was 336 x 592, and the number of frames was 33, the stride is 2. We freeze all FFN layers except for the first DiT block. </p>
+
+<p style="text-align: left; font-size: 0.875em; margin-top: 1em; margin-bottom: 1em;">During inference, we input the prepared prompts, dilated precise masks, and videos to generate the inpainted video. The first frame is edited by Flux-Fill with a new object name. The new object name are generated by LLM. We use the classifier-free guidance of 6. The inference process can be finished on an Nvidia RTX 4090 GPU within 2 minutes, 33 frames and resolution of 336 x 592. </p>
+
+</div>
+
+
+<div style="width: 60%; margin: 0 auto; text-align: center; font-family: Georgia, 'Times New Roman', Times, serif;">
+<h3 class="title is-3 has-text-centered">
+<span style="color: black;">More Videos</span>
+</h3>
+
+<div class="carousel results-carousel" id="results-carousel" style="display: flex; flex-wrap: wrap; gap: 10px;">
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\9c3f0038952649c2289bd62423a6bd06.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\9c3f0038952649c2289bd62423a6bd06_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\b8ec262d45b4f1a1989d6496044e8a4f.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\b8ec262d45b4f1a1989d6496044e8a4f_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\032abcda4b8e01fc86b66a46c77abe30.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\032abcda4b8e01fc86b66a46c77abe30_org.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-beach-dog" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="beach-dog" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\33459a153a177f603b25c69c8d00d7ac.mp4" type="video/mp4"/>
+</video>
+</div>
+<div class="item item-palace" style="flex: 1 1 24%;">
+<video autoplay="" controls="" id="palace" loop="" muted="" playsinline="" poster="" style="width: 100%;">
+<source src="videos\33459a153a177f603b25c69c8d00d7ac_org.mp4" type="video/mp4"/>
+</video>
+</div>
+</div>
+</div>
+<p><a href="index.html">Click and Back</a></p>
+</div>
+</div>
+</section>
+</body>
+</html>
